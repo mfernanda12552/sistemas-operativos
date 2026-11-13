@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio Académico: Sistemas Operativos - Marissa Mejia</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-light: #334155;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #818cf8;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Barra Lateral de Navegación */
+    aside.sidebar {
+      width: 290px;
+      background-color: #0b1120;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 1rem 0 0.4rem 0.5rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      margin-bottom: 2px;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      background-color: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Botón menú móvil */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 200;
+      background: var(--primary);
+      color: #0f172a;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Contenido Principal */
+    main.content {
+      margin-left: 290px;
+      flex: 1;
+      padding: 2.5rem 3.5rem;
+      max-width: 1150px;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    /* Portada */
+    .cover-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .cover-card h1 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(to right, #ffffff, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cover-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.2rem auto;
+    }
+
+    .student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      text-align: left;
+      background: rgba(15, 23, 42, 0.65);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .student-field span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .student-field p {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 0.2rem;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: #0f172a;
+      border: none;
+      padding: 0.65rem 1.3rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background-color: #7dd3fc;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    /* Títulos de sección */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--surface-light);
+    }
+
+    .section-num {
+      background: var(--primary);
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+      color: #fff;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #e2e8f0;
+    }
+
+    /* Tarjetas y Grids */
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    ul.styled-list {
+      padding-left: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    ul.styled-list li {
+      margin-bottom: 0.45rem;
+      color: #cbd5e1;
+    }
+
+    ul.styled-list li strong {
+      color: #fff;
+    }
+
+    /* Línea de tiempo */
+    .timeline {
+      border-left: 3px solid var(--primary);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.92rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg);
+    }
+
+    .timeline-year {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Tablas */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--surface);
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: #0b1120;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Diagrama de Estados de Proceso */
+    .process-states {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      background: #0b1120;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .state-box {
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 2px solid var(--surface-light);
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .state-box.active-state {
+      border-color: var(--primary);
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .arrow {
+      color: var(--text-muted);
+      font-weight: bold;
+    }
+
+    /* Simulador Algoritmo del Banquero */
+    .banker-box {
+      background: #0b1120;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .status-banner {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .status-safe {
+      display: block;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+
+    .status-unsafe {
+      display: block;
+      background: rgba(248, 113, 113, 0.15);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    /* Editor de comentario personal */
+    textarea.comment-editor {
+      width: 100%;
+      min-height: 140px;
+      background: #0b1120;
+      color: var(--text);
+      border: 1px solid var(--surface-light);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: inherit;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Modal para editar portada */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid var(--surface-light);
+      background: #0b1120;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      aside.sidebar {
+        transform: translateX(-100%);
+      }
+      aside.sidebar.open {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: block;
+      }
+      main.content {
+        margin-left: 0;
+        padding: 1.5rem;
+      }
+      .cover-card {
+        padding: 2rem 1.25rem;
+      }
+      .cover-card h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+
+  <!-- Navegación Lateral -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">💻 Sistemas Operativos</div>
+
+    <div class="nav-label">Inicio</div>
+    <ul class="nav-links">
+      <li><a href="#portada" onclick="closeMenu()">Portada</a></li>
+      <li><a href="#introduccion" onclick="closeMenu()">Introducción</a></li>
+    </ul>
+
+    <div class="nav-label">Temas del Curso</div>
+    <ul class="nav-links">
+      <li><a href="#tema1" onclick="closeMenu()">1. Orígenes y Evolución Temprana</a></li>
+      <li><a href="#tema2" onclick="closeMenu()">2. Breve Historia de los S.O.</a></li>
+      <li><a href="#tema3" onclick="closeMenu()">3. Evolución de los S.O.</a></li>
+      <li><a href="#tema4" onclick="closeMenu()">4. Hardware y Software</a></li>
+      <li><a href="#tema5" onclick="closeMenu()">5. Ecosistema del S.O.</a></li>
+      <li><a href="#tema6" onclick="closeMenu()">6. Componentes del S.O.</a></li>
+      <li><a href="#tema7" onclick="closeMenu()">7. Algoritmo del Banquero</a></li>
+      <li><a href="#tema8" onclick="closeMenu()">8. Hilos (Threads)</a></li>
+      <li><a href="#tema9" onclick="closeMenu()">9. Procesos</a></li>
+      <li><a href="#tema10" onclick="closeMenu()">10. Comentario Personal</a></li>
+      <li><a href="#tema11" onclick="closeMenu()">11. S.O. para Servidores</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido Principal -->
+  <main class="content">
+
+    <!-- PORTADA -->
+    <section id="portada">
+      <div class="cover-card">
+        <span class="badge">Portafolio Web Académico • Ingeniería en Sistemas</span>
+        <h1>Sistemas Operativos</h1>
+        <p class="cover-subtitle">
+          Compendio integral sobre la arquitectura, evolución histórica, gestión de concurrencia, administración de recursos y entornos de servidor de los sistemas operativos modernos.
+        </p>
+
+        <div class="student-grid">
+          <div class="student-field">
+            <span>Universidad / Institución</span>
+            <p id="disp-uni">Universidad Mariano Gálvez de Guatemala</p>
+          </div>
+          <div class="student-field">
+            <span>Curso</span>
+            <p id="disp-curso">Sistemas Operativos</p>
+          </div>
+          <div class="student-field">
+            <span>Estudiante</span>
+            <p id="disp-nombre">Marissa Fernanda Mejia Herrarte</p>
+          </div>
+          <div class="student-field">
+            <span>Carné / Matrícula</span>
+            <p id="disp-carne">090-23-979</p>
+          </div>
+          <div class="student-field">
+            <span>Catedrático</span>
+            <p id="disp-docente">Ing. Catedrático del Curso</p>
+          </div>
+          <div class="student-field">
+            <span>Fecha de Entrega</span>
+            <p id="disp-fecha">Noviembre 2026</p>
+          </div>
+        </div>
+
+        <button class="btn" onclick="openModal()">✏️ Editar Datos de Portada</button>
+      </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section id="introduccion">
+      <div class="section-header">
+        <span class="section-num">00</span>
+        <h2>Introducción</h2>
+      </div>
+      <div class="card">
+        <p>
+          Un <strong>Sistema Operativo (S.O.)</strong> es el software fundamental que actúa como intermediario entre el usuario, las aplicaciones y el hardware de una computadora. Sin él, los componentes físicos como el procesador, la memoria RAM o las unidades de almacenamiento serían sumamente complejos de operar de manera directa y segura.
+        </p>
+        <p>
+          El presente sitio web recopila y estructura los pilares teóricos y prácticos estudiados a lo largo del curso: desde los primeros dispositivos mecánicos de cálculo y las generaciones de computadoras, hasta la gestión interna de <strong>procesos, hilos y prevención de interbloqueos mediante el Algoritmo del Banquero</strong>, culminando con un análisis reflexivo y una comparativa técnica de los sistemas operativos orientados a servidores empresariales.
+        </p>
+      </div>
+    </section>
+
+    <!-- TEMA 1 -->
+    <section id="tema1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Orígenes y Evolución Temprana de la Tecnología</h2>
+      </div>
+      <p>
+        Antes de la existencia de los sistemas operativos digitales, la computación atravesó siglos de innovación mecánica y electromecánica para automatizar el cálculo matemático y el procesamiento de información.
+      </p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">Antigüedad – Siglo XVII | Herramientas Mecánicas</div>
+          <p>Desde el <strong>ábaco</strong> hasta la <em>Pascalina</em> de Blaise Pascal (1642) y la calculadora escalonada de Leibniz, las primeras máquinas realizaban operaciones aritméticas básicas mediante engranajes.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1801 – 1837 | Tarjetas Perforadas y Máquina Analítica</div>
+          <p>Joseph Marie Jacquard automatizó telares usando <strong>tarjetas perforadas</strong>. Posteriormente, <strong>Charles Babbage</strong> diseñó la Máquina Analítica (con unidad aritmética, memoria y entrada/salida) y <strong>Ada Lovelace</strong> escribió el primer algoritmo pensado para ser procesado por una máquina.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1890 – 1940 | Tabulación Electromecánica y Relés</div>
+          <p>Herman Hollerith creó máquinas tabuladoras para el censo de EE. UU. (origen de IBM). Konrad Zuse (Z3) y Howard Aiken (Harvard Mark I) introdujeron calculadoras electromecánicas programables.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1945 | Arquitectura de Von Neumann y Tubos de Vacío</div>
+          <p>Con máquinas como ENIAC y EDVAC se estableció el concepto de <strong>programa almacenado en memoria</strong>, sentando las bases estructurales de todas las computadoras modernas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 2 -->
+    <section id="tema2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Breve Historia de los Sistemas Operativos</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Década de 1950: Sistemas por Lotes (Batch)</h3>
+          <p>Las primeras computadoras carecían de S.O.; se operaban desde consolas con interruptores. General Motors desarrolló en 1956 el <strong>GM-NAA I/O</strong> para la IBM 704, considerado el primer sistema operativo funcional, capaz de ejecutar trabajos en lote mediante cintas magnéticas.</p>
+        </div>
+        <div class="card">
+          <h3>Década de 1960: Multiprogramación y Tiempo Compartido</h3>
+          <p>Nace <strong>OS/360</strong> de IBM para unificar familias de hardware. En el MIT surge <strong>MULTICS</strong>, inspirando a Ken Thompson y Dennis Ritchie (Bell Labs) a crear <strong>UNIX (1969)</strong>, reescrito en lenguaje C, portable y multiusuario.</p>
+        </div>
+        <div class="card">
+          <h3>Década de 1980: Computadoras Personales y GUI</h3>
+          <p>La microcomputadora populariza <strong>CP/M</strong> y <strong>MS-DOS</strong> (Microsoft). Apple lanza <strong>Macintosh (1984)</strong> con interfaz gráfica (GUI) y ratón, seguido por las primeras versiones de <strong>Microsoft Windows</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>1991 – Actualidad: Código Abierto, Móviles y Nube</h3>
+          <p><strong>Linus Torvalds</strong> libera el kernel <strong>Linux (1991)</strong> bajo licencia libre. En el siglo XXI dominan los S.O. móviles (<strong>Android, iOS</strong>), la virtualización, contenedores y sistemas distribuidos en la nube.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 3 -->
+    <section id="tema3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Evolución de los Sistemas Operativos</h2>
+      </div>
+      <p>La evolución técnica de los sistemas operativos se divide tradicionalmente en generaciones vinculadas al avance del hardware:</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Generación</th>
+              <th>Período</th>
+              <th>Tecnología Hardware</th>
+              <th>Características del Sistema Operativo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1ª Generación</strong></td>
+              <td>1945 – 1955</td>
+              <td>Tubos de vacío y tableros enchufables</td>
+              <td>Sin S.O. Programación directa en lenguaje máquina y tarjetas perforadas.</td>
+            </tr>
+            <tr>
+              <td><strong>2ª Generación</strong></td>
+              <td>1955 – 1965</td>
+              <td>Transistores y mainframes</td>
+              <td>Sistemas de procesamiento por lotes (Batch) y monitores residentes (FMS, IBSYS).</td>
+            </tr>
+            <tr>
+              <td><strong>3ª Generación</strong></td>
+              <td>1965 – 1980</td>
+              <td>Circuitos integrados (IC)</td>
+              <td>Multiprogramación, <em>spooling</em>, tiempo compartido (Timesharing) y UNIX.</td>
+            </tr>
+            <tr>
+              <td><strong>4ª Generación</strong></td>
+              <td>1980 – 2000</td>
+              <td>Microprocesadores (LSI / VLSI)</td>
+              <td>Sistemas operativos personales, interfaces gráficas (GUI), redes y sistemas distribuidos.</td>
+            </tr>
+            <tr>
+              <td><strong>5ª Generación</strong></td>
+              <td>2000 – Presente</td>
+              <td>Multinúcleo, SoC móvil y Cloud</td>
+              <td>Computación móvil, virtualización (hipervisores), contenedores e integración con IA.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TEMA 4 -->
+    <section id="tema4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Hardware y Software de la Computadora</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>🔧 Hardware (Nivel Físico)</h3>
+          <p>Conjunto de componentes tangibles, electrónicos y electromecánicos que ejecutan las instrucciones:</p>
+          <ul class="styled-list">
+            <li><strong>CPU (Procesador):</strong> Unidad de Control, ALU y registros que ejecutan ciclos de instrucción.</li>
+            <li><strong>Memoria Principal (RAM):</strong> Almacenamiento volátil de alta velocidad para programas en ejecución.</li>
+            <li><strong>Almacenamiento Secundario:</strong> Unidades SSD, NVMe y HDD para persistencia de datos.</li>
+            <li><strong>Dispositivos de E/S y Buses:</strong> Tarjetas de red, GPU, periféricos y canales de comunicación PCIe/USB.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>💿 Software (Nivel Lógico)</h3>
+          <p>Conjunto de programas, instrucciones y reglas lógicas que indican al hardware qué tareas realizar:</p>
+          <ul class="styled-list">
+            <li><strong>Firmware (BIOS / UEFI):</strong> Software grabado en memoria no volátil que inicializa el hardware al encender el equipo.</li>
+            <li><strong>Software de Sistema:</strong> Sistemas operativos, controladores (drivers) y utilidades de diagnóstico.</li>
+            <li><strong>Software de Desarrollo:</strong> Compiladores, intérpretes, depuradores y entornos IDE.</li>
+            <li><strong>Software de Aplicación:</strong> Navegadores, suites ofimáticas, ERP, videojuegos y apps móviles.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 5 -->
+    <section id="tema5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>Ecosistema del Sistema Operativo</h2>
+      </div>
+      <div class="card">
+        <p>
+          El sistema operativo no trabaja aislado; forma parte de una arquitectura en capas que conecta al usuario final con la electrónica del equipo:
+        </p>
+        <div class="grid-3" style="margin-top: 1rem;">
+          <div style="background:#0b1120; padding:1rem; border-radius:8px; border-left:4px solid var(--accent);">
+            <strong>1. Usuarios y Aplicaciones</strong>
+            <p style="font-size:0.88rem; margin-top:0.4rem;">Interactúan mediante interfaces gráficas (GUI) o líneas de comando (CLI/Shell).</p>
+          </div>
+          <div style="background:#0b1120; padding:1rem; border-radius:8px; border-left:4px solid var(--primary);">
+            <strong>2. APIs y Llamadas al Sistema</strong>
+            <p style="font-size:0.88rem; margin-top:0.4rem;">Interfaz programática (POSIX, Win32) mediante la cual las apps solicitan servicios al núcleo.</p>
+          </div>
+          <div style="background:#0b1120; padding:1rem; border-radius:8px; border-left:4px solid var(--success);">
+            <strong>3. Kernel y Controladores</strong>
+            <p style="font-size:0.88rem; margin-top:0.4rem;">Núcleo privilegiado (Modo Kernel) y drivers que traducen órdenes hacia el hardware físico.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 6 -->
+    <section id="tema6">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Componentes del Sistema Operativo</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>⚙️ Gestión de Procesos</h3>
+          <p style="font-size:0.9rem;">Crea, planifica, suspende y finaliza procesos, gestionando la sincronización y comunicación entre ellos (IPC).</p>
+        </div>
+        <div class="card">
+          <h3>🧠 Gestión de Memoria Principal</h3>
+          <p style="font-size:0.9rem;">Asigna y libera bloques de RAM, implementa paginación, segmentación y memoria virtual para aislar procesos.</p>
+        </div>
+        <div class="card">
+          <h3>📁 Gestión de Archivos</h3>
+          <p style="font-size:0.9rem;">Organiza datos en directorios y sistemas de archivos (NTFS, ext4, APFS, ZFS) controlando permisos de acceso.</p>
+        </div>
+        <div class="card">
+          <h3>🔌 Gestión de Entrada/Salida (E/S)</h3>
+          <p style="font-size:0.9rem;">Abstrae las diferencias del hardware mediante <em>buffering</em>, <em>caching</em>, <em>spooling</em> y controladores de dispositivos.</p>
+        </div>
+        <div class="card">
+          <h3>🛡️ Protección y Seguridad</h3>
+          <p style="font-size:0.9rem;">Controla la autenticación de usuarios, privilegios (usuario vs. root/admin) y defensa frente a accesos no autorizados.</p>
+        </div>
+        <div class="card">
+          <h3>🌐 Redes e Intérprete de Comandos</h3>
+          <p style="font-size:0.9rem;">Implementa pilas de protocolos (TCP/IP) y provee el Shell (Bash, PowerShell) para ejecutar instrucciones del usuario.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 7 -->
+    <section id="tema7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>Algoritmo del Banquero</h2>
+      </div>
+      <div class="card">
+        <p>
+          Diseñado por <strong>Edsger Dijkstra (1965)</strong>, el <strong>Algoritmo del Banquero</strong> es un método clásico de <strong>evitación de interbloqueos (Deadlocks)</strong>. Su nombre proviene de la analogía con un banquero que nunca asigna efectivo de tal manera que no pueda satisfacer las necesidades máximas de al menos uno de sus clientes.
+        </p>
+        <p>
+          Antes de conceder un recurso solicitado por un proceso, el sistema simula la asignación y verifica si el estado resultante es <strong>seguro</strong> (es decir, si existe al menos una <em>secuencia segura</em> en la que todos los procesos puedan terminar su ejecución).
+        </p>
+
+        <!-- Simulador Interactivo -->
+        <div class="banker-box">
+          <h3 style="margin-top:0;">🧮 Simulador Interactivo de Estado Seguro</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Recursos totales del sistema: <strong>10 instancias</strong>. Observa cómo el algoritmo calcula la matriz de <em>Necesidad (Máximo - Asignado)</em> y busca una secuencia segura según los recursos disponibles.
+          </p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Proceso</th>
+                  <th>Asignado Actual</th>
+                  <th>Máximo Requerido</th>
+                  <th>Necesidad Restante</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>P0</strong></td>
+                  <td>2</td>
+                  <td>6</td>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <td><strong>P1</strong></td>
+                  <td>3</td>
+                  <td>5</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td><strong>P2</strong></td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+            <button class="btn" onclick="runBanker(3)">▶ Simular con 3 Disponibles (Estado Seguro)</button>
+            <button class="btn btn-outline" onclick="runBanker(1)">⚠️ Simular con 1 Disponible (Estado Inseguro)</button>
+          </div>
+          <div id="banker-result" class="status-banner"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMA 8 -->
+    <section id="tema8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>Hilos (Threads)</h2>
+      </div>
+      <div class="card">
+        <p>
+          Un <strong>hilo (thread)</strong> o proceso ligero es la unidad básica de utilización de la CPU. Un mismo proceso puede contener múltiples hilos que se ejecutan de manera concurrente o paralela.
+        </p>
+        <div class="grid-2">
+          <div>
+            <h3>¿Qué comparten los hilos de un proceso?</h3>
+            <ul class="styled-list">
+              <li>Espacio de direcciones de memoria (código y variables globales).</li>
+              <li>Archivos abiertos y conexiones de red.</li>
+              <li>Recursos asignados por el sistema operativo.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>¿Qué posee cada hilo de forma independiente?</h3>
+            <ul class="styled-list">
+              <li>Identificador único de hilo (Thread ID).</li>
+              <li>Contador de programa (Program Counter).</li>
+              <li>Conjunto de registros de CPU y pila propia (Stack).</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:0.5rem;">
+          <strong>Ventajas del Multithreading:</strong> Mayor capacidad de respuesta en interfaces, compartición eficiente de recursos sin sobrecarga de memoria, economía en creación/cambio de contexto y aprovechamiento real de arquitecturas multinúcleo (SMP).
+        </p>
+      </div>
+    </section>
+
+    <!-- TEMA 9 -->
+    <section id="tema9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>Procesos</h2>
+      </div>
+      <div class="card">
+        <p>
+          Un <strong>proceso</strong> es un programa en ejecución. Mientras que un programa es una entidad pasiva almacenada en disco (un archivo ejecutable), un proceso es una entidad activa con un estado actual, contador de programa y recursos asignados, administrado por el S.O. mediante su <strong>PCB (Process Control Block)</strong>.
+        </p>
+        <h3>Ciclo de Vida de un Proceso (Haz clic en cada estado)</h3>
+        <div class="process-states">
+          <div class="state-box active-state" onclick="showState('nuevo', this)">1. Nuevo</div>
+          <span class="arrow">➔</span>
+          <div class="state-box" onclick="showState('listo', this)">2. Listo</div>
+          <span class="arrow">➔</span>
+          <div class="state-box" onclick="showState('ejecucion', this)">3. En Ejecución</div>
+          <span class="arrow">➔</span>
+          <div class="state-box" onclick="showState('espera', this)">4. Bloqueado / Espera</div>
+          <span class="arrow">➔</span>
+          <div class="state-box" onclick="showState('terminado', this)">5. Terminado</div>
+        </div>
+        <p id="state-desc" style="background:#0b1120; padding:1rem; border-radius:8px; border-left:3px solid var(--primary);">
+          <strong>Estado Nuevo:</strong> El proceso acaba de ser creado y el sistema operativo está inicializando su Bloque de Control de Proceso (PCB) antes de admitirlo en la cola de memoria principal.
+        </p>
+      </div>
+    </section>
+
+    <!-- TEMA 10 -->
+    <section id="tema10">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2>Comentario Personal de los Sistemas Operativos</h2>
+      </div>
+      <div class="card">
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Reflexión personal sobre la importancia de los sistemas operativos en la ingeniería y la computación moderna:
+        </p>
+        <textarea id="personal-comment" class="comment-editor">Comprender el funcionamiento interno de los sistemas operativos transforma por completo nuestra perspectiva como futuros ingenieros en sistemas. Más allá de ser una interfaz visual para abrir programas, un sistema operativo es una obra maestra de ingeniería concurrente que equilibra rendimiento, seguridad y equidad entre decenas de procesos que compiten por milisegundos de procesador y bloques de memoria. Dominar conceptos como hilos, planificación de procesos y prevención de interbloqueos nos permite escribir software mucho más eficiente, estable y escalable en entornos reales.</textarea>
+        <button class="btn" onclick="saveComment()">💾 Guardar Comentario Personal</button>
+        <span id="comment-saved-msg" style="margin-left:0.8rem; color:var(--success); font-size:0.9rem; display:none;">✔ Guardado correctamente</span>
+      </div>
+    </section>
+
+    <!-- TEMA 11 -->
+    <section id="tema11">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2>Comparación de los Sistemas Operativos para Servidores</h2>
+      </div>
+      <p>
+        A diferencia de los sistemas de escritorio, los S.O. para servidores priorizan la estabilidad ininterrumpida (<em>uptime</em>), el rendimiento bajo alta concurrencia de red, la virtualización y la seguridad empresarial.
+      </p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Linux Server (RHEL / Ubuntu Server / Debian)</th>
+              <th>Windows Server (2022 / 2025)</th>
+              <th>Unix / BSD (FreeBSD / AIX)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Licenciamiento</strong></td>
+              <td>Código abierto (GPL); gratuito o con suscripción de soporte empresarial (Red Hat, Canonical).</td>
+              <td>Propietario y comercial (licenciamiento por núcleos físicos y CALs).</td>
+              <td>Código abierto permisivo (licencia BSD) o propietario (IBM AIX, Oracle Solaris).</td>
+            </tr>
+            <tr>
+              <td><strong>Interfaz Principal</strong></td>
+              <td>Línea de comandos (CLI / SSH) sin entorno gráfico por defecto para ahorrar recursos.</td>
+              <td>GUI completa (Desktop Experience) o Server Core administrado vía PowerShell / Windows Admin Center.</td>
+              <td>Línea de comandos (CLI / SSH) altamente minimalista y modular.</td>
+            </tr>
+            <tr>
+              <td><strong>Casos de Uso Ideales</strong></td>
+              <td>Servidores web (Nginx/Apache), nube pública, contenedores (Docker/Kubernetes) y bases de datos.</td>
+              <td>Active Directory, entornos corporativos Microsoft, Exchange, SQL Server y aplicaciones .NET.</td>
+              <td>Infraestructura de red de alto rendimiento, firewalls, almacenamiento ZFS (TrueNAS) y mainframes bancarios.</td>
+            </tr>
+            <tr>
+              <td><strong>Estabilidad y Reinicios</strong></td>
+              <td>Muy alta; soporta actualizaciones en caliente del kernel (Livepatch) sin reiniciar.</td>
+              <td>Alta, aunque las actualizaciones críticas suelen requerir reinicios programados.</td>
+              <td>Extrema; reconocido por años de actividad continua sin interrupciones.</td>
+            </tr>
+            <tr>
+              <td><strong>Seguridad</strong></td>
+              <td>Permisos granulares, SELinux, AppArmor y rápida auditoría comunitaria.</td>
+              <td>Integración nativa con Active Directory, BitLocker, Windows Defender ATP y políticas de grupo (GPO).</td>
+              <td>Aislamiento mediante <em>Jails</em> (FreeBSD), arquitectura limpia y baja superficie de ataque.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Elaborado por <strong>Marissa Fernanda Mejia Herrarte</strong> (Carné: 090-23-979) • Curso de Sistemas Operativos
+    </footer>
+  </main>
+
+  <!-- Modal Edición de Portada -->
+  <div class="modal" id="cover-modal">
+    <div class="modal-content">
+      <h3 style="margin-top:0; margin-bottom:1rem;">Personalizar Datos de Portada</h3>
+      <div class="form-group">
+        <label>Universidad / Institución</label>
+        <input type="text" id="inp-uni" />
+      </div>
+      <div class="form-group">
+        <label>Nombre del Curso</label>
+        <input type="text" id="inp-curso" />
+      </div>
+      <div class="form-group">
+        <label>Nombre Completo del Estudiante</label>
+        <input type="text" id="inp-nombre" />
+      </div>
+      <div class="form-group">
+        <label>Carné / Matrícula</label>
+        <input type="text" id="inp-carne" />
+      </div>
+      <div class="form-group">
+        <label>Nombre del Catedrático</label>
+        <input type="text" id="inp-docente" />
+      </div>
+      <div class="form-group">
+        <label>Fecha de Entrega</label>
+        <input type="text" id="inp-fecha" />
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:0.6rem; margin-top:1.2rem;">
+        <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+        <button class="btn" onclick="saveCoverData()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menú móvil
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    // Simulador Algoritmo del Banquero
+    function runBanker(available) {
+      const resultBox = document.getElementById('banker-result');
+      if (available >= 2) {
+        resultBox.className = 'status-banner status-safe';
+        resultBox.innerHTML = `✅ ESTADO SEGURO (Disponibles = ${available}):<br>
+        1. Se atiende primero a <strong>P1</strong> (necesita 2 ≤ ${available}). Al terminar libera sus 3 recursos → Disponibles = ${available + 3}.<br>
+        2. Luego se atiende a <strong>P0</strong> (necesita 4 ≤ ${available + 3}). Al terminar libera 2 → Disponibles = ${available + 5}.<br>
+        3. Finalmente se atiende a <strong>P2</strong> (necesita 6 ≤ ${available + 5}).<br>
+        <strong>Secuencia segura encontrada: &lt;P1, P0, P2&gt;. No hay interbloqueo.</strong>`;
+      } else {
+        resultBox.className = 'status-banner status-unsafe';
+        resultBox.innerHTML = `⚠️ ESTADO INSEGURO / POSIBLE INTERBLOQUEO (Disponibles = ${available}):<br>
+        Ningún proceso puede satisfacer su necesidad mínima (P0 necesita 4, P1 necesita 2, P2 necesita 6) con solo ${available} recurso disponible. El sistema rechaza la asignación para evitar un Deadlock.`;
+      }
+    }
+
+    // Estados de Proceso interactivos
+    const stateDescriptions = {
+      nuevo: '<strong>Estado Nuevo:</strong> El proceso acaba de ser creado y el sistema operativo está inicializando su Bloque de Control de Proceso (PCB) antes de admitirlo en la cola de memoria principal.',
+      listo: '<strong>Estado Listo (Ready):</strong> El proceso está cargado en memoria principal y posee todos los recursos necesarios; solo espera que el planificador (Scheduler) le asigne tiempo de CPU.',
+      ejecucion: '<strong>Estado En Ejecución (Running):</strong> Las instrucciones del proceso están siendo ejecutadas activamente por uno de los núcleos del procesador.',
+      espera: '<strong>Estado Bloqueado / Espera (Waiting):</strong> El proceso detiene su ejecución temporalmente porque aguarda un evento externo, como una lectura de disco, respuesta de red o entrada del teclado.',
+      terminado: '<strong>Estado Terminado (Terminated):</strong> El proceso finalizó su ejecución (normalmente o por error) y el sistema operativo libera su memoria, archivos abiertos y PCB.'
+    };
+
+    function showState(key, el) {
+      document.querySelectorAll('.state-box').forEach(b => b.classList.remove('active-state'));
+      el.classList.add('active-state');
+      document.getElementById('state-desc').innerHTML = stateDescriptions[key];
+    }
+
+    // Edición y persistencia de Portada y Comentario en LocalStorage
+    const fields = ['uni', 'curso', 'nombre', 'carne', 'docente', 'fecha'];
+
+    function openModal() {
+      fields.forEach(f => {
+        document.getElementById('inp-' + f).value = document.getElementById('disp-' + f).innerText;
+      });
+      document.getElementById('cover-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('cover-modal').style.display = 'none';
+    }
+
+    function saveCoverData() {
+      fields.forEach(f => {
+        const val = document.getElementById('inp-' + f).value.trim();
+        if (val) {
+          document.getElementById('disp-' + f).innerText = val;
+          localStorage.setItem('so_cover_v2_' + f, val);
+        }
+      });
+      closeModal();
+    }
+
+    function saveComment() {
+      const text = document.getElementById('personal-comment').value;
+      localStorage.setItem('so_personal_comment', text);
+      const msg = document.getElementById('comment-saved-msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 2500);
+    }
+
+    // Cargar datos guardados al iniciar
+    window.addEventListener('DOMContentLoaded', () => {
+      fields.forEach(f => {
+        const saved = localStorage.getItem('so_cover_v2_' + f);
+        if (saved) document.getElementById('disp-' + f).innerText = saved;
+      });
+      const savedComment = localStorage.getItem('so_personal_comment');
+      if (savedComment) document.getElementById('personal-comment').value = savedComment;
+    });
+  </script>
+</body>
+</html>
